@@ -4,7 +4,7 @@
 <!--The head tag describes our html page-->
 
 <head>
-    <title>App Name: A Coding Challenge</title>
+    <title>Fizz Buzz: A Coding Challenge by Anna Baschnagel</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -39,7 +39,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand fs-1" href="/index.html"><img
                         src="/img/For Web/svg/White logo - no background.svg" height="100" />
-                    <span class="ms-5 app-name">App Name</span>
+                    <span class="ms-5 app-name">Fizz Buzz</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -61,10 +61,10 @@
                         </li>
                         <!-- ADD THIS IN BEFORE PUBLISHING -->
                         <li class="nav-item p-3">
-                            <a class="nav-link" href="#">The Repo</a>
+                            <a class="nav-link" href="https://github.com/baschnagelac/acbFizzBuzzFinal.git" target="_blank">The Repo</a>
                         </li>
                         <li class="nav-item p-3">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="https://annabaschnagelportfolio.netlify.app/" target="_blank">About</a>
                         </li>
                         <li class="nav-item p-3">
                             <a class="nav-link" href="#">Blog</a>
@@ -81,39 +81,98 @@
 
     <main class="content container  mt-5">
         <div class="row row-cols-1 row-cols-lg-2 p-3">
-            <h1 class=" border-bottom border-2 border-dark">The Code for APP</h1>
+            <h1 class=" border-bottom border-2 border-dark">The Code for Fizz Buzz</h1>
             <!-- source code -->
             <div class="col-12 col-lg-8">
                 <pre class="line-numbers">
                         <code class="language-javascript ">
-                            function displayMessage() {
-                                let msg = document.getElementById('message').value;
+                            function getValues() {
+                                //get user values from the page
+                                let fizzValue = document.getElementById('fizzValue').value;
                             
-                                Swal.fire(
-                                    {
-                                        backdrop: false,
-                                        title: 'App Name',
-                                        text: msg
-                                    }
-                                )
+                                let buzzValue = document.getElementById('buzzValue').value;
+                            
+                            
+                            
+                                //check to make sure they're numbers - parse
+                            
+                                fizzValue = parseInt(fizzValue);
+                                buzzValue = parseInt(buzzValue);
+                            
+                            
+                                //check to make sure they're integers
+                            
+                                if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
+                                    //call logic function -call fizzBuzz
+                                    let fbArray = fizzBuzzC(fizzValue, buzzValue);
+                                    //call displayData and write the values to the screen
+                                    displayDataB(fbArray);
+                                } else {
+                                    Swal.fire(
+                                        {
+                                            icon: 'error',
+                                            title: 'Oops!',
+                                            text: 'Only integers are allowed for Hundo!'
+                                        }
+                                    );
+                                }
+                            
                             }
+                            function fizzBuzzC(fizzValue, buzzValue) {
+                                let returnArray = [];
                             
+                                for (let i = 1; i <= 100; i++) {
+                                    let value = ((i % fizzValue == 0 ? 'Fizz' : '') + (i % buzzValue == 0 ? 'Buzz' : '') || i);
+                                    returnArray.push(value);
+                                }
+                                return returnArray;
+                            }
+                            function displayDataB(fbArray) {
+                                let resultsDiv = document.getElementById('results');
+                            
+                                let resultsHtml = '';
+                            
+                                for (let i = 0; i < fbArray.length; i++) {
+                                    let returnArray = fbArray[i];
+                                    let className = '';
+                            
+                                    if (returnArray == 'FizzBuzz') {
+                                        className = 'FizzBuzz';
+                                    } else if (returnArray == 'Buzz') {
+                                        className = 'Buzz';
+                                    } else if (returnArray == 'Fizz') {
+                                        className = 'Fizz';
+                                    }
+                            
+                                    resultsHtml += `<div class="col ${className}">${returnArray}</div>`;
+                            
+                                }
+                                resultsDiv.innerHTML = resultsHtml;
+                            }
                         </code>
                     </pre>
             </div>
             <!-- code description -->
             <div class="col-12 col-lg-4">
-                <h5>The code is structured in three functions</h5>
-                <p>The first function <code>function getValues()</code> gets the user's input from the page and acts as
-                    a controller function or entry point. It then gets the starting and ending values from the page.
-                    Next, it parses the inputs as numbers and verifies that they ARE numbers. If they ARE numbers, the
-                    numbers are generated and displayed on the page. If they are not, we tell the user with an Sweet
-                    Alert.</p>
-                <p>The second function <code>function generateNumbers(start, end)</code>generates our numbers and
-                    contains the logic parts of the function by running a for loop. </p>
-                <p>The third function <code>function displayNumbers(numberArray)</code> acts as the view function and
-                    displays the numbers on the page. Within this function, we use a for loop and if statements to
-                    control the display of the results.</p>
+                <h5 class="fs-2">The code is structured in three functions <span class="text-muted fs-4">although, there are several ways to solve this challenge - the code displayed here is the version that's currently running </span></h5>
+                <p>Please Note: Some of the characters may not display correctly, see the repo (linked in navigation menu) for full details.</p>
+                <code>function getValues()</code>
+                <p>is the controller function. The program begins by getting the user values from the page via
+                getElementById. It then checks to make sure that the input values are integers and displays a sweet
+                alert if there is a user error. Also, we call the logic and display functions here.</p>
+                <code>function fizzBuzzC</code>
+                <p>is the logic function. This function begins by declarring returnArray as an empty array. Next, a
+                for-loop is used to loop through the start and end values from the user's input. Modulo operators are
+                also used here to determine if the user's input values are divisible by either 'fizz' value, 'buzz'
+                value or BOTH ('fizz buzz'). Therefore, the app will return an array of numbers, but for those divisible
+                by the startValue, endValue, or both will return the words 'FIZZ / BUZZ' respectively.</p>
+               <code>function displayDataB</code>
+                <p>is the view function. First, it grabs the 'results' id from the document in order to display in the
+                proper place. Next, resultsHTML is declared as an empty string so that it is clear/empty for the user to
+                begin using the app. Then, a for-loop loops through the numbers and then an if/else statement is used to
+                add classNames to the respective values so that it displays WORDS instead of the numbers in the user's
+                view on the app if the numbers are divisble by fizz, buzz, or both. If the numbers aren't divisible by
+                those, then it will display the normal integers.</p>
 
             </div>
         </div>
@@ -163,7 +222,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
-        <script src="js/site.js"></script>
+    <script src="js/site.js"></script>
     <script src="js/prism.js"></script>
     <script>
         Prism.plugins.NormalizeWhitespace.setDefaults({

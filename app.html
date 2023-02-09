@@ -4,7 +4,7 @@
 <!--The head tag describes our html page-->
 
 <head>
-    <title>App Name: A Coding Challenge</title>
+    <title>Fizz Buzz A Coding Challenge by Anna Baschnagel</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -38,7 +38,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand fs-1" href="/index.html"><img
                         src="/img/For Web/svg/White logo - no background.svg" height="100" />
-                    <span class="ms-5 app-name">App Name</span>
+                    <span class="ms-5 app-name">Fizz Buzz</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -60,10 +60,10 @@
                         </li>
                         <!-- ADD THIS IN BEFORE PUBLISHING -->
                         <li class="nav-item p-3">
-                            <a class="nav-link" href="#">The Repo</a>
+                            <a class="nav-link" href="https://github.com/baschnagelac/acbFizzBuzzFinal.git" target="_blank">The Repo</a>
                         </li>
                         <li class="nav-item p-3">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="https://annabaschnagelportfolio.netlify.app/" target="_blank">About</a>
                         </li>
                         <li class="nav-item p-3">
                             <a class="nav-link" href="#">Blog</a>
@@ -79,8 +79,53 @@
 
 
     <main class="content container">
-        <div class="container">
-
+        <div class="container mt-5">
+            <div class="row row-cols-1 row-cols-lg-2">
+                <div class="col-lg-4 col border-end border-2 border-success">
+                    <h1 class="appTitle">Fizz Buzz: A Coding Project</h1>
+                    <h4 class="lead">A JavaScript coding challenge using loops! Write a program that displays the
+                        numbers 0 to 100 and for multiples of '3' display <strong class="fw-bold">"Fizz"</strong>
+                        instead of the number and for the multiples of '5' display <strong
+                            class="fw-bold">"Buzz"</strong>. If a multiple of both, display "FizzBuzz"</h4>
+                    <h2 class="mt-5 border-bottom border-2 border-dark">Instructions</h2>
+                    <p>Enter a fizz and a buzz value. Press the button and the values will appear. </p>
+                </div>
+                <div class="col-lg-8 col">
+                    <div class="row">
+                        <h5>Enter Values</h5>
+                        <form class="row gy-2 gx-3">
+                            <div class="col">
+                                <label for="fizzValue">Fizz Value</label>
+                                <input id="fizzValue" type="number" class="form-control" action="#"
+                                    placeholder="Fizz Value" value=3 aria-label="Fizz Value">
+                            </div>
+                            <div class="col">
+                                <label for="buzzValue">Buzz Value</label>
+                                <input id="buzzValue" type="number" class="form-control" action="#"
+                                    placeholder="Buzz Value" value=5 aria-label="Buzz Value">
+                            </div>
+                            <div class="col">
+                                <label for="stopValue">Stop Value</label>
+                                <input id="count" type="number" class="form-control" action="#" placeholder="Stop Value"
+                                    value=100 aria-label="Stop Value" min=1 max=5000>
+                            </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end mt-3">
+                        <button type="button" id="btnSubmit" class="btn btn-dark btn-lg hundoBtn">Display Fizz
+                            Buzz</button>
+                    </div>
+                    </form>
+                    <h2 class="mt-5 border-bottom border-2 border-dark">Results</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <tbody id="results">
+                                <!-- RESULTS GO HERE -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </main>
 
@@ -123,12 +168,28 @@
         </div>
     </footer>
 
+    <template id="fbTemplate">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </template>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
-        <script src="js/site.js"></script>
+
+            <!-- sweet alert cdn -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/site.js"></script>
+    <script>
+        document.getElementById('btnSubmit').addEventListener('click', getValues);
+    </script>
 </body>
 
 
